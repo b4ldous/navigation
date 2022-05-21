@@ -1,11 +1,12 @@
 import React from 'react'
+import DesktopComponent from './DesktopComponent';
 import MobileComponent from './MobileComponent';
 
 const ResponsiveNavBar = () => {
 
 
     const [width, setWidth] = React.useState(window.innerWidth);
-    const breakpoint = 620;
+    const breakpoint = 720;
 
     React.useEffect(() => {
         const handleWindowResize = () => setWidth(window.innerWidth)
@@ -15,7 +16,7 @@ const ResponsiveNavBar = () => {
         return () => window.removeEventListener("resize", handleWindowResize);
       }, []);
   
-  return width < breakpoint ? <MobileComponent/> : <DesktopComponent />;
+  return width < breakpoint ? <MobileComponent/> : <DesktopComponent/>;
 
   
 }
