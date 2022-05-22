@@ -9,7 +9,7 @@ import List from '@mui/material/List'
 import { ListItemButton, ListItemText } from '@mui/material';
 import Divider from '@mui/material/Divider'
 
-const drawerWidth = 1 / 4;
+const drawerWidth = 250;
 
 
 const DesktopComponent = () => {
@@ -19,7 +19,7 @@ const DesktopComponent = () => {
         <AppBar position="fixed" color='inherit' elevation={1}
         sx={{ width: `calc(100% - ${drawerWidth}px)`, ml: `${drawerWidth}px`}}>
         <Toolbar>
-          <Typography variant="h6" noWrap component="div">
+          <Typography variant="h6" component="div">
 
             <NavLink to='/'> Home</NavLink>
       
