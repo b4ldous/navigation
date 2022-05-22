@@ -1,10 +1,17 @@
 
 import React, { useState } from "react";
-  import { AppBar, Drawer, IconButton, List, ListItem, ListItemText, Toolbar} from "@mui/material";
+  import { AppBar, Drawer, IconButton, List, ListItemText, Toolbar, Divider, ListItemButton} from "@mui/material";
   import MenuIcon from '@mui/icons-material/Menu';
   import HomeIcon from '@mui/icons-material/Home';
-  import CloseOutlinedIcon from '@mui/icons-material/CloseOutlined';
-  import { Link, Outlet} from "react-router-dom";
+  
+  import { NavLink, Outlet} from "react-router-dom";
+
+
+  const navLinks = [
+    { title: "First", path: "/first" }];
+  
+
+
 
 const MobileComponent = () => {
     const [openDrawer, setOpenDrawer] = useState(false);
@@ -13,20 +20,24 @@ const MobileComponent = () => {
 
 <Drawer
         open={openDrawer}
-        onClose={() => setOpenDrawer(false)}
-      >
+        onClose={() => setOpenDrawer(false)}  >
         <List>
 
-          <IconButton onClick={() => setOpenDrawer(!openDrawer)}>
-            <CloseOutlinedIcon />
+        
 
-          </IconButton> {/*You can erase this part of the code, it was just for testing some functionality */}
+          
          
-          <ListItem onClick={() => setOpenDrawer(false)}>
-            <ListItemText>
-              <Link to="/first">First</Link>
-            </ListItemText>
-          </ListItem>
+
+          {navLinks.map(({ title, path }) => (
+                <ListItemButton button key={title} component={NavLink} to={path} style={({ isActive }) => ({
+                  color: isActive ? '#fff' : '#545e6f',
+                  background: isActive ? '#7600dc' : '#f0f0f0',
+                })}  onClick={() => setOpenDrawer(false)}>
+                  <ListItemText primary={title} />
+                </ListItemButton>
+              ))}
+
+
           
          
         </List>
@@ -34,7 +45,7 @@ const MobileComponent = () => {
 
       <Outlet />
 
-      <AppBar position="fixed" color="inherit">
+      <AppBar position="fixed" color="inherit" elevation={0}>
 
 
         <Toolbar>
@@ -42,13 +53,14 @@ const MobileComponent = () => {
         <MenuIcon/>
       </IconButton>
 
-      <IconButton  to='/' component={Link}> 
+      <IconButton  to='/' component={NavLink}> 
       <HomeIcon />
 
       </IconButton>
       
 
         </Toolbar>
+        <Divider/>
       
 
         

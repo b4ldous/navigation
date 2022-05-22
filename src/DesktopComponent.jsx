@@ -10,24 +10,38 @@ import { ListItemButton, ListItemText } from '@mui/material';
 import Divider from '@mui/material/Divider'
 
 const drawerWidth = 250;
-
+const navLinks = [
+  { title: "First", path: "/first" }];
 
 const DesktopComponent = () => {
   return (
 
       <Box sx={{display: 'flex'}}>
-        <AppBar position="fixed" color='inherit' elevation={1}
+
+        
+        <AppBar position="fixed" color='inherit' elevation={0}
         sx={{ width: `calc(100% - ${drawerWidth}px)`, ml: `${drawerWidth}px`}}>
-        <Toolbar>
-          <Typography variant="h6" component="div">
+        
+          <Toolbar>
+          <Typography variant="h6" sx={{textDecoration: 'none', color: 'black'}}>
 
             <NavLink to='/'> Home</NavLink>
       
           </Typography>
         </Toolbar>
+        <Divider/>
 
+
+
+        
+        
 
         </AppBar>
+
+
+
+        
+        
         
         
         
@@ -46,16 +60,27 @@ const DesktopComponent = () => {
         <Divider />
 
           <List sx={{padding: '10px'}}>
-            <ListItemButton component={NavLink} to='/first' style={({ isActive }) => ({
-    color: isActive ? '#fff' : '#545e6f',
-    background: isActive ? '#7600dc' : '#f0f0f0',
-  })}>
-              <ListItemText>
-                 First
-                
-                </ListItemText>
 
-            </ListItemButton>
+          {navLinks.map(({ title, path }) => (
+                <ListItemButton button key={title} component={NavLink} to={path} style={({ isActive }) => ({
+                  color: isActive ? '#fff' : '#545e6f',
+                  background: isActive ? '#7600dc' : '#f0f0f0',
+                })}>
+                  <ListItemText primary={title} />
+                </ListItemButton>
+              ))}
+            
+
+                    
+           
+           
+               
+
+
+
+
+
+
 
           </List>
 
