@@ -23,6 +23,7 @@ const Layout = () => {
               display: "flex",
               justifyContent: "space-between",
               alignItems: "center",
+              height: "100px",
             }}
           >
             <Box>
@@ -33,7 +34,11 @@ const Layout = () => {
             <Box>
               {navLinks.map(({ title, path }) => (
                 <Button
-                  sx={{ fontSize: "1rem", borderRadius: "10px" }}
+                  sx={{
+                    padding: "20px",
+                    fontSize: "1rem",
+                    borderRadius: "10px",
+                  }}
                   key={title}
                   component={NavLink}
                   to={path}
