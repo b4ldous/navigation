@@ -12,7 +12,9 @@ const Layout = () => {
           <li>
             <Link to="/first">First</Link>
           </li>
-          
+          <li>
+            <Link to="/second">Second</Link>
+          </li>
         </ul>
       </nav>
 
