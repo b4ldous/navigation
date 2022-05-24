@@ -1,91 +1,77 @@
-import React from 'react'
-import { Outlet, NavLink } from "react-router-dom";
-import AppBar from '@mui/material/AppBar';
-import Container from '@mui/material/Container';
-import Typography  from '@mui/material/Typography';
-import Box from '@mui/material/Box'
-
+import React, { useState } from "react";
+import {
+  AppBar,
+  Drawer,
+  IconButton,
+  List,
+  ListItemText,
+  Toolbar,
+  ListItemButton,
+  Box,
+  Container,
+  Divider,
+} from "@mui/material";
+import MenuIcon from "@mui/icons-material/Menu";
+import HomeIcon from "@mui/icons-material/Home";
+import { NavLink, Outlet } from "react-router-dom";
 
 const navLinks = [
-  { title: "About", path: "/first" }, {
-    title: "Contact", path: '/second'
-  }];
-
-
-
+  { title: "About", path: "/first" },
+  {
+    title: "Contact",
+    path: "/second",
+  },
+];
 
 const Layout = () => {
+  const [openDrawer, setOpenDrawer] = useState(false);
+
   return (
     <>
-     <AppBar color='inherit' elevation={0}>
-      <Container fixed>
+      <Drawer open={openDrawer} onClose={() => setOpenDrawer(false)}>
+        <Box sx={{ width: 250 }}>
+          <Toolbar>hello</Toolbar>
+          <Divider />
 
-        <Box sx={{ display: 'flex', justifyContent: 'space-between', height: '75px', alignItems: 'center'}}>
-          <Box sx={{textDecoration: 'none', color: 'black'}} component={NavLink} to='/'>
-            <Typography variant='h5'>Home</Typography>
-
-          </Box>
-          
-          
-          <Box sx={{margin: 0}}>
-
-
-          {navLinks.map(({ title, path }) => (
-                <Box sx={{textDecoration: 'none', color: 'black', padding: '10px'}} key={title} component={NavLink} to={path} style={({ isActive }) => ({
-                 
-                  background: isActive ? '#ebebe0' : '',
-                  borderRadius: isActive ? '10px': ''
-                })} >
-                  <Typography variant='body'>{title}</Typography>
-                </Box>
-              ))}
-
-
-          </Box>
-
-          
-
-
-
-
-
-
-
-
-
-
+          <List>
+            {navLinks.map(({ title, path }) => (
+              <ListItemButton
+                button
+                key={title}
+                component={NavLink}
+                to={path}
+                style={({ isActive }) => ({
+                  color: isActive ? "#fff" : "",
+                  background: isActive ? "black" : "",
+                })}
+                onClick={() => setOpenDrawer(false)}
+              >
+                <ListItemText primary={title} />
+              </ListItemButton>
+            ))}
+          </List>
         </Box>
+      </Drawer>
 
-      </Container>
+      <Outlet />
 
+      <AppBar position="fixed" color="inherit" elevation={1}>
+        <Container fixed>
+          <Toolbar>
+            <IconButton onClick={() => setOpenDrawer(!openDrawer)}>
+              <MenuIcon sx={{ color: "black" }} />
+            </IconButton>
 
-    </AppBar>
-    
-      
-<Outlet />
+            <IconButton to="/" component={NavLink}>
+              <HomeIcon sx={{ color: "black" }} />
+            </IconButton>
+          </Toolbar>
+        </Container>
+      </AppBar>
 
-
-    
-    
-    
+      <Outlet />
     </>
+  );
+};
 
- 
-
-
-
-
-
-
-
-
-
-
-
-
-
-  
-  )
-}
-
-export default Layout
+export default Layout;
