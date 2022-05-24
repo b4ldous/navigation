@@ -15,7 +15,7 @@ const navLinks = [
 const Layout = () => {
   return (
     <>
-      <AppBar color="transparent" elevation={1}>
+      <AppBar color="transparent" elevation={0}>
         <Container>
           <Box
             sx={{
@@ -27,29 +27,32 @@ const Layout = () => {
           >
             <Box>
               <IconButton component={NavLink} to="/">
-                <HomeIcon fontSize="large" />
+                <HomeIcon sx={{color: 'black'}} fontSize="large" />
               </IconButton>
             </Box>
-            <Box sx={{ display: "flex" }}>
-              {navLinks.map(({ title, path }) => (
-                <Box
-                  sx={{
-                    padding: "10px",
-                    textDecoration: "none",
-                    color: "black",
-                  }}
-                  key={title}
-                  component={NavLink}
-                  to={path}
-                  style={({ isActive }) => ({
-                    color: isActive ? "#fff" : "",
-                    background: isActive ? "orange" : "",
-                    borderRadius: isActive ? "10px" : "",
-                  })}
-                >
-                  <Typography variant="button">{title}</Typography>
-                </Box>
-              ))}
+            <Box>
+              <Box sx={{ display: "flex" }}>
+                {navLinks.map(({ title, path }) => (
+                  <Box
+                    sx={{
+                      padding: "10px",
+                      textDecoration: "none",
+                      color: "black",
+                    }}
+                    key={title}
+                    component={NavLink}
+                    to={path}
+                    style={({ isActive }) => ({
+                      borderBottom: isActive ? "solid 5px" : "",
+                      borderColor: isActive ? "black" : "",
+                    })}
+                  >
+                    <Typography sx={{ fontSize: "1rem" }} variant="body">
+                      {title}
+                    </Typography>
+                  </Box>
+                ))}
+              </Box>
             </Box>
           </Box>
         </Container>
