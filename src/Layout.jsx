@@ -16,7 +16,8 @@ import HomeIcon from "@mui/icons-material/Home";
 import { NavLink, Outlet } from "react-router-dom";
 
 const navLinks = [
-  { title: "About", path: "/first" },
+  { title: "About", 
+  path: "/first" },
   {
     title: "Contact",
     path: "/second",
@@ -36,7 +37,7 @@ const Layout = () => {
           <List>
             {navLinks.map(({ title, path }) => (
               <ListItemButton
-                button
+                
                 key={title}
                 component={NavLink}
                 to={path}
